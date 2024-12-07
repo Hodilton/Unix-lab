@@ -1,0 +1,26 @@
+# Makefile.edit
+
+CC = gcc
+CFLAGS = -g
+LIBS = -lm
+
+# Исполняемый файл
+EXEC = calcul_edit
+
+# Объектные файлы
+OBJS = calculate_edit.o main_edit.o
+
+# Правило по умолчанию
+all: $(EXEC)
+
+$(EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $(EXEC) $(LIBS)
+
+calculate_edit.o: calculate_edit.c calculate_edit.h
+	$(CC) $(CFLAGS) -c calculate_edit.c -o calculate_edit.o
+
+main_edit.o: main_edit.c calculate_edit.h
+	$(CC) $(CFLAGS) -c main_edit.c -o main_edit.o
+
+clean:
+	-rm -f $(EXEC) $(OBJS) *~
